@@ -10,7 +10,7 @@ import (
 
 const (
 	alphabet           = "abcdefghijkmnopqrstuvwxyz0123456789"
-	recoveryCodeLength = 10
+	recoveryCodeLength = 12
 )
 
 // GenerateRecoveryCodes creates 10 recovery codes of the form:
