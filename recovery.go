@@ -20,8 +20,8 @@ var (
 	rgx = regexp.MustCompile(`^[0-9A-Z]{6}-[0-9A-Z]{6}$`)
 )
 
-//ValidCodeFormat returns true if the code is of the correct format
-func ValidCodeFormat(code string) bool {
+//ValidRecoveryCode returns true if the code matches recovery code format
+func ValidRecoveryCode(code string) bool {
 	return rgx.MatchString(code)
 }
 
