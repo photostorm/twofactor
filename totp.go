@@ -335,8 +335,8 @@ func (otp *Totp) QR() ([]byte, error) {
 }
 
 // ToBytes serialises a TOTP object in a byte array
-// Sizes:         4        4      N     8       4        4        N         4          N      4     4          4               8                 4
-// Format: |total_bytes|key_size|key|counter|digits|issuer_size|issuer|account_size|account|steps|offset|total_failures|verification_time|hashFunction_type|
+// Sizes:         4        4      N     8       4        4        N         4          N      4          4               8                 4
+// Format: |total_bytes|key_size|key|counter|digits|issuer_size|issuer|account_size|account|offset|total_failures|verification_time|hashFunction_type|
 // hashFunction_type: 0 = SHA1; 1 = SHA256; 2 = SHA512
 // TODO:
 // 1- improve sizes. For instance the hashFunction_type could be a short.
@@ -409,12 +409,6 @@ func (otp *Totp) ToBytes() ([]byte, error) {
 	// steps
 	stepsBytes := bigendian.ToInt(otp.stepSize)
 	if _, err := buffer.Write(stepsBytes[:]); err != nil {
-		return nil, err
-	}
-
-	// offset
-	offsetBytes := bigendian.ToInt(otp.clientOffset)
-	if _, err := buffer.Write(offsetBytes[:]); err != nil {
 		return nil, err
 	}
 
@@ -530,12 +524,6 @@ func TOTPFromBytes(message []byte, issuer string) (*Totp, error) {
 	endOffset = startOffset + 4
 	b = buffer[startOffset:endOffset]
 	otp.stepSize = bigendian.FromInt([4]byte{b[0], b[1], b[2], b[3]})
-
-	// read the offset
-	startOffset = endOffset
-	endOffset = startOffset + 4
-	b = buffer[startOffset:endOffset]
-	otp.clientOffset = bigendian.FromInt([4]byte{b[0], b[1], b[2], b[3]})
 
 	// read the total failures
 	startOffset = endOffset

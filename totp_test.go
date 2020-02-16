@@ -280,8 +280,8 @@ func TestSerialization(t *testing.T) {
 		t.Error("Deserialized counter property differ from original TOTP")
 	}
 
-	if deserializedOTP.clientOffset != otp.clientOffset {
-		t.Error("Deserialized clientOffset property differ from original TOTP")
+	if deserializedOTP.clientOffset == otp.clientOffset {
+		t.Error("ClientOffset property should not be serialized")
 	}
 
 	if deserializedOTP.account != otp.account {
