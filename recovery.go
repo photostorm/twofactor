@@ -9,7 +9,7 @@ import (
 )
 
 const (
-	alphabet           = "abcdefghijkmnopqrstuvwxyz0123456789"
+	alphabet           = "ABCDEFGHIJKMNOPQRSTUVWXYZ0123456789"
 	recoveryCodeLength = 12
 )
 
