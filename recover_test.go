@@ -116,3 +116,20 @@ func TestUseRecoveryCode(t *testing.T) {
 		t.Error("it should have used number 0")
 	}
 }
+
+func BenchmarkGenerateRecoveryCodes(b *testing.B) {
+	b.SetParallelism(1)
+	for i := 0; i < b.N; i++ {
+		codes, err := GenerateRecoveryCodes()
+		if err != nil {
+			b.Fatal(err)
+		}
+
+		cryptedCodes, err := BCryptRecoveryCodes(codes)
+		if err != nil {
+			b.Fatal(err)
+		}
+
+		_ = cryptedCodes
+	}
+}

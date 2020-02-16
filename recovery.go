@@ -1,12 +1,14 @@
 package twofactor
 
 import (
+	"context"
 	"crypto/rand"
 	"io"
 	"regexp"
 	"strings"
 
 	"golang.org/x/crypto/bcrypt"
+	"golang.org/x/sync/errgroup"
 )
 
 const (
@@ -51,16 +53,28 @@ func GenerateRecoveryCodes() ([]string, error) {
 // BCryptRecoveryCodes hashes each recovery code given and return them in a new
 // slice.
 func BCryptRecoveryCodes(codes []string) ([]string, error) {
-	cryptedCodes := make([]string, len(codes))
-	for i, c := range codes {
-		hash, err := bcrypt.GenerateFromPassword([]byte(c), bcrypt.DefaultCost)
-		if err != nil {
-			return nil, err
-		}
+	num := len(codes)
+	cryptedCodes := make([]string, num)
 
-		cryptedCodes[i] = string(hash)
+	g, _ := errgroup.WithContext(context.Background())
+
+	for i, c := range codes {
+		i, c := i, c // https://golang.org/doc/faq#closures_and_goroutines
+		g.Go(func() error {
+
+			hash, err := bcrypt.GenerateFromPassword([]byte(c), bcrypt.DefaultCost)
+			if err != nil {
+				return err
+			}
+
+			cryptedCodes[i] = string(hash)
+			return nil
+		})
 	}
 
+	if err := g.Wait(); err != nil {
+		return nil, err
+	}
 	return cryptedCodes, nil
 }
 
