@@ -3,6 +3,7 @@ package twofactor
 import (
 	"crypto/rand"
 	"io"
+	"regexp"
 	"strings"
 
 	"golang.org/x/crypto/bcrypt"
@@ -12,6 +13,15 @@ const (
 	alphabet           = "ABCDEFGHIJKMNOPQRSTUVWXYZ0123456789"
 	recoveryCodeLength = 12
 )
+
+var (
+	rgx = regexp.MustCompile(`^[0-9A-Z]{6}-[0-9A-Z]{6}$`)
+)
+
+//ValidCodeFormat returns true if the code is of the correct format
+func ValidCodeFormat(code string) bool {
+	return rgx.MatchString(code)
+}
 
 // GenerateRecoveryCodes creates 10 recovery codes of the form:
 // abd34-1b24do (using alphabet, of length recoveryCodeLength).

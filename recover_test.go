@@ -23,6 +23,10 @@ func TestGenerateRecoveryCodes(t *testing.T) {
 		if !rgx.MatchString(c) {
 			t.Errorf("code %s did not match regexp", c)
 		}
+
+		if !ValidCodeFormat(c) {
+			t.Errorf("code %s did not match format", c)
+		}
 	}
 }
 
