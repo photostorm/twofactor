@@ -133,11 +133,12 @@ func (otp *Totp) Validate(userCode string) error {
 	}
 
 	// check against the total amount of failures
-	if otp.totalVerificationFailures >= maxFailures && !validBackoffTime(otp.lastVerificationTime) {
-		return ErrorLockDown
-	}
+	if otp.totalVerificationFailures >= maxFailures {
 
-	if otp.totalVerificationFailures >= maxFailures && validBackoffTime(otp.lastVerificationTime) {
+		if !validBackoffTime(otp.lastVerificationTime) {
+			return ErrorLockDown
+		}
+
 		// reset the total verification failures counter
 		otp.totalVerificationFailures = 0
 	}
