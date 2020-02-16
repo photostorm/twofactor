@@ -18,7 +18,7 @@ func TestGenerateRecoveryCodes(t *testing.T) {
 		t.Error("it should create 10 codes, got:", len(codes))
 	}
 
-	rgx := regexp.MustCompile(`^[0-9a-z]{5}-[0-9a-z]{5}$`)
+	rgx := regexp.MustCompile(`^[0-9A-Z]{6}-[0-9A-Z]{6}$`)
 	for _, c := range codes {
 		if !rgx.MatchString(c) {
 			t.Errorf("code %s did not match regexp", c)
