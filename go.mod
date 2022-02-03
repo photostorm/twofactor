@@ -1,4 +1,4 @@
-module github.com/AtomicNibble/twofactor
+module github.com/photostorm/twofactor
 
 go 1.13
 
