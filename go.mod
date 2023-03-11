@@ -6,6 +6,6 @@ require (
 	github.com/sec51/convert v0.0.0-20151121170152-8ed1f399b5e0
 	github.com/sec51/gf256 v0.0.0-20160126143050-2454accbeb9e // indirect
 	github.com/sec51/qrcode v0.0.0-20160126144534-b7779abbcaf1
-	golang.org/x/crypto v0.1.0
-	golang.org/x/sync v0.0.0-20220722155255-886fb9371eb4
+	golang.org/x/crypto v0.7.0
+	golang.org/x/sync v0.1.0
 )
