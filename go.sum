@@ -4,7 +4,7 @@ github.com/sec51/gf256 v0.0.0-20160126143050-2454accbeb9e h1:wKXba8dfsFjbxkMpzZB
 github.com/sec51/gf256 v0.0.0-20160126143050-2454accbeb9e/go.mod h1:hCjOqSOB9PBw5MdJ+0uSLCBV7FbLy0xwOR+c193HkcE=
 github.com/sec51/qrcode v0.0.0-20160126144534-b7779abbcaf1 h1:CI9zS8HvMiibvXM/F3IthY797GW77fNYgioJl/8Xzzk=
 github.com/sec51/qrcode v0.0.0-20160126144534-b7779abbcaf1/go.mod h1:uPm44Rj3uXSSOvmKmoeRuAUNUgwH2JHW5KIzqFFS/j4=
-golang.org/x/crypto v0.49.0 h1:+Ng2ULVvLHnJ/ZFEq4KdcDd/cfjrrjjNSXNzxg0Y4U4=
-golang.org/x/crypto v0.49.0/go.mod h1:ErX4dUh2UM+CFYiXZRTcMpEcN8b/1gxEuv3nODoYtCA=
+golang.org/x/crypto v0.50.0 h1:zO47/JPrL6vsNkINmLoo/PH1gcxpls50DNogFvB5ZGI=
+golang.org/x/crypto v0.50.0/go.mod h1:3muZ7vA7PBCE6xgPX7nkzzjiUq87kRItoJQM1Yo8S+Q=
 golang.org/x/sync v0.19.0 h1:vV+1eWNmZ5geRlYjzm2adRgW2/mcpevXNg50YZtPCE4=
 golang.org/x/sync v0.19.0/go.mod h1:9KTHXmSnoGruLpwFjVSX0lNNA75CykiMECbovNTZqGI=
